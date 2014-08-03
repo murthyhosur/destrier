@@ -10,6 +10,9 @@ import org.destrier.ProxyServer;
  */
 public class HttpProxyServer implements ProxyServer {
 
+	private String host;
+	private int port;
+
 	/**
 	 * Start HTTP proxy Server.
 	 */
@@ -26,6 +29,16 @@ public class HttpProxyServer implements ProxyServer {
 	public void stop() {
 		// TODO Auto-generated method stub
 
+	}
+
+	public void setHost(String host) 
+	{
+		this.host = host;
+	}
+
+	public void setPort(int port)
+	{
+		this.port = port;
 	}
 
 }

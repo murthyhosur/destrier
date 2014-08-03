@@ -6,12 +6,12 @@ package org.destrier;
  * @author Narasimha Murthi
  *
  */
-public interface Configuration<T extends ProxyServer> {
+public interface Configuration {
 
 	/**
 	 * Configures the provided {@link ProxyServer}.
 	 * 
 	 * @param proxyServer proxyServer to be configured.
 	 */
-	void configure(T proxyServer);
+	void configure(ProxyServer proxyServer);
 }

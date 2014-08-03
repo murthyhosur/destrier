@@ -35,11 +35,31 @@ public class ProxyServerBuilder {
 	}
 	
 	/**
-	 * Build the proxy server and configure it using the provided configuration.
+	 * Build the {@link ProxyServer} and configure it using the provided configuration.
 	 */
 	public ProxyServer buildProxyServer() 
 	{
-		// TODO Auto-generated method stub
-		return null;
+		List<ProxyServer> proxyServers = new ArrayList<ProxyServer>();
+		
+		// Create Proxy servers from configuration.
+		for(Configuration configuration : configurations)
+		{
+			if(configuration instanceof CreatesProxyServer)
+			{
+				ProxyServer proxyServer = CreatesProxyServer.class.cast( configuration ).createProxyServer();
+				proxyServers.add( proxyServer );
+			}
+		}
+		
+		// Configure each proxy server with all the available configuration.
+		for(ProxyServer proxyServer : proxyServers)
+		{
+			for (Configuration configuration : configurations) 
+			{
+				configuration.configure( proxyServer );
+			}
+		}
+		
+		return new DelegatingProxyServer(proxyServers);
 	}
 }
